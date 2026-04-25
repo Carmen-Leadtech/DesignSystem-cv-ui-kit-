@@ -1,0 +1,17 @@
+{
+  "codeConnect": {
+    "include": [
+      "src/**/*.figma.tsx",
+      "src/components/SidebarMenu/SidebarMenu.tsx"
+    ],
+    "label": "React",
+    "language": "tsx",
+    "paths": {
+      "components/*": ["src/components/*"],
+      "hooks": ["src/hooks/index.ts"],
+      "hooks/*": ["src/hooks/*"],
+      "types/*": ["src/types/*"],
+      "@tokens/*": ["src/styles/*"]
+    }
+  }
+}

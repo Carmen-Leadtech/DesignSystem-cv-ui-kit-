@@ -1,0 +1,75 @@
+image: node:24.13.0
+
+definitions:
+  steps:
+    - step: &lint
+        name: Lint
+        caches:
+          - node
+        script:
+          - npm ci
+          - npm run lint
+          
+    - step: &test
+        name: Test
+        caches:
+          - node
+        script:
+          - npm ci
+          - npx playwright install --with-deps chromium
+          - npm run test:coverage
+          
+    - step: &build
+        name: Build
+        caches:
+          - node
+        artifacts:
+          - dist/**
+          - README.md
+        script:
+          - npm ci
+          - npm run build
+          
+    - step: &publish
+        name: Package publish
+        script:
+          - pipe: atlassian/npm-publish:1.1.1
+            variables:
+              NPM_TOKEN: $NPM_TOKEN
+              NEXUS_AUTH_TOKEN: $NEXUS_AUTH_TOKEN
+              NPM_REGISTRY_AUTH_URL: 'http://nexus.1eres.net:8081/repository/npm-leadtech-private/'
+              
+    - step: &chromatic
+        name: Publish to Chromatic
+        caches:
+          - node
+        script:
+          - npm ci
+          - npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --build-script-name=build:storybook --only-changed
+
+pipelines:
+  branches:
+    master:
+      # For master, we keep Build and Publish sequential 
+      # since Publish likely depends on the Build artifacts.
+      - parallel:
+          - step: *lint
+          - step: *test
+      - step: *build
+      - step:
+          name: Publish to Chromatic
+          caches:
+            - node
+          script:
+            - npm ci
+            - npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --build-script-name=build:storybook
+      - step: *publish
+
+  pull-requests:
+    '**':
+      # For PRs, we can run everything at the exact same time
+      - parallel:
+          - step: *lint
+          - step: *test
+          - step: *build
+          - step: *chromatic
