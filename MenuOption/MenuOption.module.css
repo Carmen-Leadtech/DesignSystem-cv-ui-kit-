@@ -1,0 +1,129 @@
+/* Rail tokens are set on SidebarMenu `.root`; fallbacks keep Storybook / isolation usable */
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  padding: var(--spacing-xs) var(--spacing-xs) var(--spacing-xs) var(--spacing-s-exception);
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+  border-radius: var(--corner-radius-s);
+  cursor: pointer;
+  text-align: start;
+  color: var(--color-text-secondary);
+  font: inherit;
+  transition:
+    max-width 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  &:focus-visible {
+    outline: 2px solid var(--color-border-interactivity-default);
+    outline-offset: 0;
+  }
+  &:hover {
+    background: var(--color-background-weakest);
+  }
+}
+
+.selected {
+  background: var(--color-background-weakest);
+}
+
+.root.collapsed {
+  justify-content: flex-start;
+  padding: var(--spacing-xs);
+  max-width: var(--sidebar-menu-row-max-width-collapsed, 44px);
+}
+
+.iconLabelContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: 0;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  transition: gap 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconLabelContainer.collapsed {
+  justify-content: center;
+  gap: 0;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 0;
+  margin-right: 0;
+  transition:
+    margin-left 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-right 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    min-width 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    max-width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconContainer.collapsed {
+  box-sizing: border-box;
+  transition:
+    margin-left 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-right 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    min-width 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    max-width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.labelContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-m-default);
+  font-weight: var(--font-weight-default);
+  line-height: var(--line-height-body-m-default);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.subLabel {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-small-details-xs-captions);
+  font-weight: var(--font-weight-default);
+  line-height: var(--line-height-small-details-xs-captions);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.suffix {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
