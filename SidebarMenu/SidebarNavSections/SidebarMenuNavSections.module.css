@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s-exception);
+  width: 100%;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-height: 29px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-fill-common-weak);
+  border: none;
+  margin: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-body-s);
+  font-weight: var(--font-weight-default);
+  line-height: var(--line-height-body-s);
+  color: var(--color-text-secondary);
+}
+
+.itemList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs-exception);
+  width: 100%;
+}

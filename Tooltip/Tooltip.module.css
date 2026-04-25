@@ -1,0 +1,23 @@
+.trigger {
+  display: block;
+  min-width: 0;
+}
+
+.surface {
+  position: fixed;
+  z-index: 1001;
+  box-sizing: border-box;
+  max-width: min(280px, calc(100vw - var(--spacing-m)));
+  padding: var(--spacing-xxs-exception) var(--spacing-xs);
+  border-radius: var(--corner-radius-s);
+  background: var(--color-background-strongest);
+  color: var(--color-text-inverted);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-s);
+  line-height: var(--line-height-body-s);
+  font-weight: var(--font-weight-default);
+  pointer-events: none;
+  box-shadow:
+    0px 1px 4px 0px var(--color-border-weak),
+    0px 3px 8px 0px var(--color-border-weaker);
+}
